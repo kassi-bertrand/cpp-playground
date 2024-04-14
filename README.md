@@ -1,2 +1,2 @@
-# cpp-playground
-Experiment playground with the C++ language.
+# C & C++ Playground
+Experiment playground with the C & C++ languages.
