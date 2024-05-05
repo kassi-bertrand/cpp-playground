@@ -1,11 +1,11 @@
-# What is the difference between a char array and a pointer to a string literal
+# What is the difference between a char array and a pointer to a string literal?
 
 In C, a **string literal** refers to a pair of double quotes enclosing a series of one or multiple characters. The following is an example of a string literal:
 
 ```txt
 "literal"
 ```
-A string literals like the above, exist in some place of memory. Where exactly? We don't know, it's entirely dependent on the implementation. The reason why it's like this is because location of is not explicitely defined by the C standard.
+A string literals like the above, exist in some place of memory. Where exactly? We don't know, it's entirely dependent on the implementation. The reason why it's like this is because the location of is not explicitely defined by the C standard.
 
 In C, string literals can be used to initialize characters arrays like so:
 
@@ -54,7 +54,7 @@ int main(){
     char *s2 = "another litteral";
 }
 ```
-`s2` is not a character array. It's a pointer to the first character of the specified string literal. Unlike `s1`, `s2` does not live on the stack but rather a location not defined by the C standard which makes it entirely dependent on whoever is implementing the compiler I am currently using. Since `s2` does not live on the stack, but in a "secret" part of memory, attempting any form of modification results in a segmention fault. Another way to put this is that `s2` points to read-only part of memory. So, pretty much of all we can is print what `s2` is pointing to:
+`s2` is not a character array. It's a pointer to the first character of the specified string literal. Unlike `s1`, `s2` does not live on the stack but rather in a location not defined by the C standard which makes it entirely dependent on whoever is implementing the compiler I am currently using. Since `s2` does not live on the stack, but in a "secret" part of memory, attempting any form of modification results in a segmention fault. Another way to put this is that `s2` points to read-only part of memory. So, pretty much of all we can do is print what `s2` is pointing to:
 
 ```c
 #include <stdio.h>
