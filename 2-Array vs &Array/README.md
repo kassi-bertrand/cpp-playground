@@ -113,7 +113,7 @@ The result why we get the same result is familiar at this point. `matrix[1]` hol
 
 > Let's see what happens if we increment `&matrix[1]`...
 
-`&matrix[1]` is pointing to an array of `4` `int` values, which totals `20` bytes. So, incrementing `&matrix[1]` will `20` bytes, but if we dereference the pointer after this operation we should that the pointer points to the first element of the third array, which `10`. Let's see this action:
+`&matrix[1]` is pointing to an array of `5` `int` values, which totals `20` bytes. So, incrementing `&matrix[1]` will add `20` bytes, but if we dereference the pointer after this operation we should see that the pointer points to the first element of the third array, which `10`. Let's see this action:
 
 ```c
 int main() {
@@ -141,13 +141,13 @@ The above snippet, increments `&matrix[1]`, displays the new address, then deref
 
 > Huh?! I thought `*(&matrix[1] + 1)` would output  `10`...
 
-I thought so too. But then I remembered... After incrementing `&matrix[1]` which type of pointer do we have right now? One that holds the address of the first element in the array? OR one that holds the starting address of a _block_ of memory? We are holding the starting address of a block of memory.
+I thought so too. But then I remembered... After incrementing ``&matrix[1]`` which type of pointer do we have right now? One that holds the address of the first element in the array? OR one that holds the starting address of a _block_ of memory? We are holding the starting address of a block of memory. As a matter of fact, the pointer is of type `int (*)[5]`, not `int *`. The `int (*) [5]` means the variable contains the starting address of a block of `5` consecutive `int`s in memory.
 
 > So, how do we get `10` then?
 
 Two ways...
 
-(1) By 'casting' our pointer to a `int*`, _before_ dereferencing it. It looks like this:
+(1) By 'casting' our `int(*)[5]` pointer to a `int*` pointer, _before_ dereferencing it. It looks like this:
 
 ```c
 int main() {
@@ -222,7 +222,7 @@ and the result:
 *(*(&matrix[1] + 1)): 10
 ```
 
-Initially `&matrix[1] + 1` is holding the starting address of a block of memory (i.e. the array). Dereferencing it once gives the actual array, but remember _arrays decay to pointers_. So, what we ended up getting was not the entire array, but rather the address of its first element! That's why dereferencing the first time returned a `int*` and that's dereferencing the second time, returned the result: `10`.
+Initially `&matrix[1] + 1` is holding the starting address of a block of memory (i.e. the array). Dereferencing it once gives the actual array, but remember _arrays decay to pointers_. So, what we ended up getting was not the entire array, but rather the address of its first element! That's why dereferencing the first time returned a `int*` and that's why dereferencing the _second_ time returned the expected result: `10`.
 
 # References 📚
 
