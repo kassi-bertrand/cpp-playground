@@ -35,7 +35,7 @@ int main() {
 }
 ```
 
-When compiled and ran, the above code returns the following result:
+When compiled and ran, the above code returns the following result, on my machine:
 
 ```txt
 array: 6127612612
@@ -68,7 +68,7 @@ int main() {
 }
 ```
 
-Compiling and running the program outputs the following result:
+Compiling and running the program outputs the following result, on my machine:
 
 ```txt
     array:  6135263940
@@ -102,7 +102,7 @@ int main() {
 }
 ```
 
-In the above code snippet, we are creating a 2D array, with 3 rows and 5 columns. Compiling and running the code gives us the following result:
+In the above code snippet, we are creating a 2D array, with 3 rows and 5 columns. Compiling and running the code gives us the following result, on my machine:
 
 ```txt
 matrix[1]: 6165525148
@@ -131,7 +131,7 @@ int main() {
 }
 ```
 
-The above snippet, increments `&matrix[1]`, displays the new address, then dereferences the pointer to see what it's pointing to. Compiling and running this program returns the following output:
+The above snippet, increments `&matrix[1]`, displays the new address, then dereferences the pointer to see what it's pointing to. Compiling and running this program returns the following output, on my machine:
 
 ```txt
 &matrix[1]: 6162903708
@@ -170,7 +170,7 @@ int main() {
 }
 ```
 
-Compiling and running the program gives the following output now, which is in line with our expectations:
+Compiling and running the program gives the following output on my machine, which is in line with our expectations:
 
 ```txt
 &matrix[1]: 6102954652
@@ -185,7 +185,7 @@ The reason we got the desired result is because by casting, we instructed the C 
 
 (2) The second way is a little less obvious. At least was to me...
 
-When we ran this code:
+When I ran this code:
 
 ```c
 int main() {
@@ -203,7 +203,7 @@ int main() {
 }
 ```
 
-we got the following output:
+I got the following output on my machine:
 
 ```txt
 &matrix[1]: 6162903708
@@ -216,13 +216,13 @@ Dereferencing `(&matrix[1] + 1)` did not return the `10` immediately, instead it
 printf("*(*(&matrix[1] + 1)): %zu\n\n", *(*(&matrix[1] + 1)));
 ```
 
-and the result:
+and the result on my machine is this:
 
 ```txt
 *(*(&matrix[1] + 1)): 10
 ```
 
-Initially `&matrix[1] + 1` is holding the starting address of a block of memory (i.e. the array). Dereferencing it once gives the actual array, but remember _arrays decay to pointers_. So, what we ended up getting was not the entire array, but rather the address of its first element! That's why dereferencing the first time returned a `int*` and that's why dereferencing the _second_ time returned the expected result: `10`.
+Initially `&matrix[1] + 1` is holding the starting address of a block of consecutive memory (i.e. the array). Dereferencing it once gives the actual array, but remember _arrays decay to pointers_. So, what we ended up getting was not the entire array, but rather the address of its first element! That's why dereferencing the first time returned a `int*` and that's why dereferencing the _second_ time returned the expected result: `10`.
 
 # References 📚
 
